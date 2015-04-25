@@ -6,22 +6,22 @@
 #include <stdlib.h>
 #include <mpi.h>
 
-int size, rank, msg, source, dest, tag;
+int communicator_size, process_rank, message, source, destination, tag;
  
 int main(int argc, char *argv[]){
-   MPI_Status stat;
+   MPI_Status status;
  
    MPI_Init(&argc,&argv);
-   MPI_Comm_size(MPI_COMM_WORLD,&size);
-   MPI_Comm_rank(MPI_COMM_WORLD,&rank);
+   MPI_Comm_size(MPI_COMM_WORLD,&communicator_size);
+   MPI_Comm_rank(MPI_COMM_WORLD,&process_rank);
  
-	if(rank == 0)
+	if(process_rank == 0)
 	{
-   		msg = 42; dest = 1; tag = 0;	
-		MPI_Bcast (&msg, 1, MPI_INT, 0, MPI_COMM_WORLD);	
+   		message = 42; destination = 1; tag = 0;	
+		MPI_Bcast (&message, 1, MPI_INT, 0, MPI_COMM_WORLD);	
 	} else {
-		MPI_Bcast (&msg, 1, MPI_INT, 0, MPI_COMM_WORLD);
-		printf("Processo %d recebeu a mensagem - %d.\n",rank,msg);
+		MPI_Bcast (&message, 1, MPI_INT, 0, MPI_COMM_WORLD);
+		printf("Processo %d recebeu a mensagem - %d.\n",process_rank,message);
 	}
 	
    MPI_Finalize();
