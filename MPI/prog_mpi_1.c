@@ -30,7 +30,8 @@ int main(int argc, char *argv[])
 		}	
 	}
  
-	if(process_rank != 0){
+	if(process_rank != 0)
+	{
 		source = 0; tag = 0;
 		
 		MPI_Recv(&message, 1, MPI_INT, source, tag, MPI_COMM_WORLD, &status);

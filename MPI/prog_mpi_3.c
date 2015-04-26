@@ -10,7 +10,8 @@ int main(int argc, char *argv[])
 
    call_result = MPI_Init(&argc,&argv);
 
-   if (call_result != MPI_SUCCESS) {
+   if (call_result != MPI_SUCCESS) 
+   {
      printf ("Erro ao iniciar o programa MPI. Terminando.\n");
      MPI_Abort(MPI_COMM_WORLD, call_result);
    }
